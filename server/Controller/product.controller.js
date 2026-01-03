@@ -1,16 +1,33 @@
-import { addProduct, getProducts, deleteProduct } from "../Services/product.service.js";
+import {
+    addProduct,
+    getProducts,
+    deleteProduct,
+} from "../Services/product.service.js";
 
 export const createProduct = async (req, res) => {
     try {
         const { title, price, description } = req.body;
-        const imagePath = `/uploads/${req.file.filename}`;
 
-        const id = await addProduct(title, price, description, imagePath);
+        if (!req.file) {
+            return res.status(400).json({ message: "Product image required" });
+        }
 
-        res.status(201).json({ message: "Product added", productId: id });
+        // S3 public URL
+        const imagePath = req.file.location;
 
+        const id = await addProduct(
+            title,
+            price,
+            description,
+            imagePath
+        );
+
+        res.status(201).json({
+            message: "Product added",
+            productId: id,
+        });
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({ message: "Server error" });
     }
 };
@@ -33,4 +50,3 @@ export const removeProduct = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
-

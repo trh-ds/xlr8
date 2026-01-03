@@ -2,20 +2,19 @@ import {
     createCarousel,
     getAllCarousel,
     deleteCarousel,
-} from "../services/carousel.service.js";
+} from "../Services/carousel.service.js";
 
 export const addCarousel = async (req, res) => {
     try {
         const { title, description, productLink } = req.body;
 
-        if (!req.files?.mobileImage || !req.files?.desktopImage) {
+        if (!req.files || !req.files.mobileImage || !req.files.desktopImage) {
             return res.status(400).json({ message: "Images required" });
         }
 
-        const mobileImage =
-            "/uploads/carousel/" + req.files.mobileImage[0].filename;
-        const desktopImage =
-            "/uploads/carousel/" + req.files.desktopImage[0].filename;
+        // S3 gives you the full public URL here
+        const mobileImage = req.files.mobileImage[0].location;
+        const desktopImage = req.files.desktopImage[0].location;
 
         await createCarousel({
             title,
