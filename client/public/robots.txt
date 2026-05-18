@@ -1,0 +1,46 @@
+User-agent: Googlebot
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /contact
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard
+Disallow: /home-decor
+Disallow: /hand-made-pottery
+Disallow: /power-connect
+Disallow: /contact-us
+Disallow: /about-us
+Disallow: /documentation
+
+User-agent: Bingbot
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /contact
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard
+Disallow: /home-decor
+Disallow: /hand-made-pottery
+Disallow: /power-connect
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /contact
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard
+Disallow: /home-decor
+Disallow: /hand-made-pottery
+Disallow: /power-connect
+
+Sitemap: https://xlr8aerospace.com/sitemap.xml
